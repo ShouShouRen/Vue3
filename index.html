@@ -17,12 +17,38 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand"></a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item" v-for="(link, index) in links" :key="index">
+                    <a :href="link.url" class="nav-link" :title="`This link gose to the ${link.text} page`">{{ link.text
+                        }}</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div id="app" class="container">
         <h1>{{ hello }}</h1>
         <p>{{ content }}</p>
     </div>
 </body>
 <script>
+    // for(link in links){
+
+    // }
+
+    Vue.createApp({
+        data() {
+            return {
+                links: [
+                    { text: 'Home', url: 'index.html' },
+                    { text: 'About', url: 'about.html' },
+                    { text: 'Contact', url: 'contact.html' }
+                ]
+            };
+        }
+    }).mount("nav");
     Vue.createApp({
         data() {
             return {
