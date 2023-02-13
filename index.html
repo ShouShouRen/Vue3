@@ -17,15 +17,22 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg"
+        :class="{'navbar-light bg-light' : !useDarkNavbar,'navbar-dark bg-dark' :useDarkNavbar}">
         <div class="container-fluid">
             <a href="#" class="navbar-brand">My Vue</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item" v-for="(page, index) in pages" :key="index">
-                    <a :href="page.link.url" :class="{active: activePage == index}" class="nav-link" :title="`This link gose to the ${page.link.text} page`"
+                    <a :href="page.link.url" :class="{active: activePage == index}" class="nav-link"
+                        :title="`This link gose to the ${page.link.text} page`"
                         @click.prevent="activePage = index">{{page.link.text }}</a>
                 </li>
             </ul>
+            <form class="d-flex">
+                <button
+                 class="btn btn-primary"
+                 @click.prevent = "useDarkNavBar =! useDarkNavBar"   ></button>
+            </form>
         </div>
     </nav>
     <div id="app" class="container">
@@ -43,6 +50,7 @@
         data() {
             return {
                 activePage: 0,
+                useDarkNavBar: false,
                 pages: [
                     {
                         link: { text: 'Home', url: 'index.html' },
