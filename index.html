@@ -19,8 +19,8 @@
 <body>
     <div id="app">
 
-        <nav class="navbar navbar-expand-lg"
-            :class="{'navbar-light bg-light':!useDarkNavBar,'navbar-dark bg-dark':useDarkNavBar}">
+        <nav class="navbar navbar-expand-lg" :class="navbarClass">
+            <!-- :class="{'navbar-light bg-light':!useDarkNavBar,'navbar-dark bg-dark':useDarkNavBar}" -->
             <div class="container-fluid">
                 <a href="#" class="navbar-brand">My Vue</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -49,6 +49,16 @@
 
     // }
     Vue.createApp({
+        computed: {
+            navbarClass() {
+                return {
+                    'navbar-light': !this.useDarkNavBar,
+                    'bg-light': !this.useDarkNavBar,
+                    'navbar-dark': this.useDarkNavBar,
+                    'bg-dark': this.useDarkNavBar,
+                }
+            }
+        },
         data() {
             return {
                 activePage: 0,
